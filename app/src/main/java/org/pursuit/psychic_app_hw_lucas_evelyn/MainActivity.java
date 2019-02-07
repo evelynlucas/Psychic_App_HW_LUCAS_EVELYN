@@ -2,10 +2,6 @@ package org.pursuit.psychic_app_hw_lucas_evelyn;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-
-import org.pursuit.psychic_app_hw_lucas_evelyn.database.DatabaseHelper;
-import org.pursuit.psychic_app_hw_lucas_evelyn.model.GuessModel;
 
 public class MainActivity extends AppCompatActivity implements FragmentInterface{
 
@@ -34,6 +30,5 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
                 .replace(R.id.container, ResultFragment.newInstance(text))
                 .addToBackStack(null)
                 .commit();
-
     }
 }

@@ -2,6 +2,7 @@ package org.pursuit.psychic_app_hw_lucas_evelyn;
 
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +20,8 @@ import android.widget.Spinner;
 public class MainFragment extends Fragment {
 
     private FragmentInterface fragmentInterface;
+    private MediaPlayer song;
+    private View rootView;
 
 
     public static MainFragment newInstance() {
@@ -36,7 +39,10 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        song = MediaPlayer.create(rootView.getContext(), R.raw.doomed);
+        song.start();
+        return rootView;
 
     }
 
@@ -53,5 +59,29 @@ public class MainFragment extends Fragment {
                 fragmentInterface.showFirstFragment(spinnerSelection);
             }
         });
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        song.release();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        song.release();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        song.pause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        song.start();
     }
 }

@@ -2,27 +2,27 @@ package org.pursuit.psychic_app_hw_lucas_evelyn.model;
 
 public class GuessModel {
 
-    private int correct_guess;
-    private int wrong_guess;
+    private int correctGuess;
+    private int wrongGuess;
 
-    public GuessModel(int correct_guess, int wrong_guess) {
-        this.correct_guess = correct_guess;
-        this.wrong_guess = wrong_guess;
+    public GuessModel(int correctGuess, int wrongGuess) {
+        this.correctGuess = correctGuess;
+        this.wrongGuess = wrongGuess;
     }
 
-    public int getCorrect_guess() {
-        return correct_guess;
+    public int getCorrectGuess() {
+        return correctGuess;
     }
 
-    public int getWrong_guess() {
-        return wrong_guess;
+    public int getWrongGuess() {
+        return wrongGuess;
     }
 
-    public void setCorrect_guess(int correct_guess) {
-        this.correct_guess = correct_guess;
+    public void setCorrectGuess(int correctGuess) {
+        this.correctGuess = correctGuess;
     }
 
-    public void setWrong_guess(int wrong_guess) {
-        this.wrong_guess = wrong_guess;
+    public void setWrongGuess(int wrongGuess) {
+        this.wrongGuess = wrongGuess;
     }
 }

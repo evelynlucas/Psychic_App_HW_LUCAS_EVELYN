@@ -1,7 +1,7 @@
 package org.pursuit.psychic_app_hw_lucas_evelyn;
 
-
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.pursuit.psychic_app_hw_lucas_evelyn.database.DatabaseHelper;
 import org.pursuit.psychic_app_hw_lucas_evelyn.model.GuessModel;
@@ -34,6 +33,8 @@ public class ChoiceFragment extends Fragment {
     private String resultString;
     private DatabaseHelper helper;
     private FragmentInterface fragmentInterface;
+    private View rootView;
+    private MediaPlayer song;
 
 
     public static ChoiceFragment newInstance(String string) {
@@ -53,12 +54,16 @@ public class ChoiceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_choice, container, false);
+        rootView = inflater.inflate(R.layout.fragment_choice, container, false);
+        song = MediaPlayer.create(rootView.getContext(), R.raw.bauhaus);
+        song.start();
+        return rootView;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -69,21 +74,31 @@ public class ChoiceFragment extends Fragment {
         imageView2 = view.findViewById(R.id.imageview_two);
         imageView3 = view.findViewById(R.id.imageview_three);
         imageView4 = view.findViewById(R.id.imageview_four);
-        helper = new DatabaseHelper(view.getContext());
+
 
         if (getArguments() != null && getArguments().containsKey(FRAGMENT_STRING_KEY)) {
 //            textView.setText(getArguments().getString(FRAGMENT_STRING_KEY));
             String choiceString = getArguments().getString(FRAGMENT_STRING_KEY);
             switch (choiceString) {
-                case "Goths":
-                    imageView1.setImageResource(R.drawable.aljourgensen);
+                case "Goth Singers":
+                    imageView1.setImageResource(R.drawable.skinnypuppy);
                     imageView2.setImageResource(R.drawable.bauhaus);
                     imageView3.setImageResource(R.drawable.christian_death);
                     imageView4.setImageResource(R.drawable.gallowdance);
                     clickListeners();
                     break;
-                case "Punks":
-                    imageView1.setImageResource(R.drawable.skinnypuppy);
+                case "Creepy Dolls":
+                    imageView1.setImageResource(R.drawable.doll1);
+                    imageView2.setImageResource(R.drawable.doll2);
+                    imageView3.setImageResource(R.drawable.doll3);
+                    imageView4.setImageResource(R.drawable.doll4);
+                    clickListeners();
+                    break;
+                case "Haunted Houses":
+                    imageView1.setImageResource(R.drawable.hh1);
+                    imageView2.setImageResource(R.drawable.hh2);
+                    imageView3.setImageResource(R.drawable.hh3);
+                    imageView4.setImageResource(R.drawable.hh4);
                     clickListeners();
                     break;
             }
@@ -100,8 +115,8 @@ public class ChoiceFragment extends Fragment {
                     addCorrectToDatabase();
                 } else {
                     addWrongToDatabase();
-//                Toast.makeText(v.getContext(), "Computer: " + computerChoice + ". Your choice: 1", Toast.LENGTH_SHORT).show();
-                }}
+                }
+            }
         });
 
         imageView2.setOnClickListener(new View.OnClickListener() {
@@ -111,9 +126,6 @@ public class ChoiceFragment extends Fragment {
                     addCorrectToDatabase();
                 } else {
                     addWrongToDatabase();
-//                    resultString = "Wrong! Your wrong average is blah";
-//                    Log.d("shmoop", resultString);
-//                    Toast.makeText(v.getContext(), resultString, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -121,16 +133,11 @@ public class ChoiceFragment extends Fragment {
         imageView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (computerChoice == 3) {
                     addCorrectToDatabase();
                 } else {
                     addWrongToDatabase();
-//                    resultString = "Wrong! Your wrong average is blah";
-//                    Log.d("shmoop", resultString);
-//                    Toast.makeText(v.getContext(), resultString, Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
@@ -144,31 +151,51 @@ public class ChoiceFragment extends Fragment {
                 }
             }
         });
-
-//        for (int i = 0; i < helper.getGuessList().size(); i++) {
-//            Log.d("database_row: ", helper.getGuessList().get(i).getCorrect_guess() + " " + helper.getGuessList().get(i).getWrong_guess());
-//        }
     }
 
     private void addCorrectToDatabase() {
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(getActivity());
-        databaseHelper.addEntry(new GuessModel(1, 0));
-        resultString = "You are correct and Average is: " + databaseHelper.guessCorrectPercentage();
-        fragmentInterface.showResultFragment(resultString);
-                for (int i = 0; i < helper.getGuessList().size(); i++) {
-            Log.d("database_row: ", helper.getGuessList().get(i).getCorrect_guess() + " " + helper.getGuessList().get(i).getWrong_guess());
+        helper = DatabaseHelper.getInstance(getActivity());
+        helper.addEntry(new GuessModel(1, 0));
+        fragmentInterface.showResultFragment(getString(R.string.guess_correct));
+
+        for (int i = 0; i < helper.getGuessList().size(); i++) {
+            Log.d("database_row: ", helper.getGuessList().get(i).getCorrectGuess() + " " + helper.getGuessList().get(i).getWrongGuess());
         }
     }
 
     private void addWrongToDatabase() {
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(getActivity());
-        databaseHelper.addEntry(new GuessModel(0, 1));
+        helper = DatabaseHelper.getInstance(getActivity());
+        helper.addEntry(new GuessModel(0, 1));
+        fragmentInterface.showResultFragment(getString(R.string.guess_wrong));
 
-        resultString = "You are wrong";
-        fragmentInterface.showResultFragment(resultString);
         for (int i = 0; i < helper.getGuessList().size(); i++) {
-            Log.d("database_row: ", helper.getGuessList().get(i).getCorrect_guess() + " " + helper.getGuessList().get(i).getWrong_guess());
+            Log.d("database_row: ", helper.getGuessList().get(i).getCorrectGuess() + " " + helper.getGuessList().get(i).getWrongGuess());
         }
         Log.d("Averages", " " + helper.guessCorrectPercentage());
+    }
+
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        song.release();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        song.release();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        song.pause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        song.start();
     }
 }

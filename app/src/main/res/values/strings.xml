@@ -1,13 +1,16 @@
 <resources>
-    <string name="app_name">Psychic_App_HW_LUCAS_EVELYN</string>
+    <string name="app_name">Spooky Psychic</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="choose_theme_text">Choose Theme</string>
     <string name="guess_textview">Go on, you little psychic! \n Try your best guess!</string>
+    <string name="percentage">% Accurate</string>
+    <string name="guess_correct">You are correct! You\'re on your way to being a Spooky Psychic!</string>
+    <string name="guess_wrong">You are wrong :( Maybe try again?</string>
     <string-array name="spinner_choices">
-        <item>Goths</item>
-        <item>Punks</item>
-        <item>Weirdoes</item>
+        <item>Goth Singers</item>
+        <item>Creepy Dolls</item>
+        <item>Haunted Houses</item>
     </string-array>
 </resources>
