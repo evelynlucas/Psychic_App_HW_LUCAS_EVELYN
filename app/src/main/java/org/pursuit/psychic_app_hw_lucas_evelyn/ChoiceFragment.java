@@ -69,7 +69,7 @@ public class ChoiceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView textView = view.findViewById(R.id.choice_textview);
+//        TextView textView = view.findViewById(R.id.choice_textview);
         imageView1 = view.findViewById(R.id.imageview_one);
         imageView2 = view.findViewById(R.id.imageview_two);
         imageView3 = view.findViewById(R.id.imageview_three);
@@ -77,7 +77,6 @@ public class ChoiceFragment extends Fragment {
 
 
         if (getArguments() != null && getArguments().containsKey(FRAGMENT_STRING_KEY)) {
-//            textView.setText(getArguments().getString(FRAGMENT_STRING_KEY));
             String choiceString = getArguments().getString(FRAGMENT_STRING_KEY);
             switch (choiceString) {
                 case "Goth Singers":
@@ -157,21 +156,12 @@ public class ChoiceFragment extends Fragment {
         helper = DatabaseHelper.getInstance(getActivity());
         helper.addEntry(new GuessModel(1, 0));
         fragmentInterface.showResultFragment(getString(R.string.guess_correct));
-
-        for (int i = 0; i < helper.getGuessList().size(); i++) {
-            Log.d("database_row: ", helper.getGuessList().get(i).getCorrectGuess() + " " + helper.getGuessList().get(i).getWrongGuess());
-        }
     }
 
     private void addWrongToDatabase() {
         helper = DatabaseHelper.getInstance(getActivity());
         helper.addEntry(new GuessModel(0, 1));
         fragmentInterface.showResultFragment(getString(R.string.guess_wrong));
-
-        for (int i = 0; i < helper.getGuessList().size(); i++) {
-            Log.d("database_row: ", helper.getGuessList().get(i).getCorrectGuess() + " " + helper.getGuessList().get(i).getWrongGuess());
-        }
-        Log.d("Averages", " " + helper.guessCorrectPercentage());
     }
 
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 /**
@@ -21,7 +22,6 @@ public class MainFragment extends Fragment {
 
     private FragmentInterface fragmentInterface;
     private MediaPlayer song;
-    private View rootView;
 
 
     public static MainFragment newInstance() {
@@ -39,7 +39,7 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         song = MediaPlayer.create(rootView.getContext(), R.raw.doomed);
         song.start();
         return rootView;
@@ -49,8 +49,10 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        final TextView textView = view.findViewById(R.id.intro_textview);
         final Spinner spinner = view.findViewById(R.id.spinner);
         final Button themeButton = view.findViewById(R.id.theme_button);
+        textView.setText(R.string.intro_text);
 
         themeButton.setOnClickListener(new View.OnClickListener() {
             @Override

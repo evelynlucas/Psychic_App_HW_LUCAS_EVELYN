@@ -14,6 +14,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <TextView
+        android:id="@+id/intro_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24sp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/black"
+        android:fontFamily="@font/advent_pro_bold"
+        android:padding="12dp"
+        android:text="@string/intro_text"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="24sp" />
+
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:id="@+id/relative_spinner"

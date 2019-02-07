@@ -7,7 +7,10 @@
     <string name="guess_textview">Go on, you little psychic! \n Try your best guess!</string>
     <string name="percentage">% Accurate</string>
     <string name="guess_correct">You are correct! You\'re on your way to being a Spooky Psychic!</string>
-    <string name="guess_wrong">You are wrong :( Maybe try again?</string>
+    <string name="guess_wrong">You are wrong 💀 \nMaybe try again?</string>
+    <string name="result_textview_string">YOU ARE WRONG</string>
+    <string name="intro_text">Welcome, creatures of the night... \n\nThink you have what it takes to be a Spooky Psychic?
+        Pick a theme from below to begin guessing. But remember, choose <i>wisely</i>...</string>
     <string-array name="spinner_choices">
         <item>Goth Singers</item>
         <item>Creepy Dolls</item>

@@ -13,12 +13,12 @@
         android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:text="@string/hello_blank_fragment"/>
 
     <TextView
         android:id="@+id/result_textview"
@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:textSize="36sp"
         android:gravity="center"
-        android:textColor="@android:color/black"
-        android:hint="YOU ARE WRONG"
+        android:textColor="@android:color/white"
+        tools:text="@string/result_textview_string"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

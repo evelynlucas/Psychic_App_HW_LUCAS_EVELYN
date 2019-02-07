@@ -3,7 +3,7 @@ package org.pursuit.psychic_app_hw_lucas_evelyn;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity implements FragmentInterface{
+public class MainActivity extends AppCompatActivity implements FragmentInterface {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
