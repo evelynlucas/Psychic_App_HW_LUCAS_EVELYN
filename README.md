@@ -1,4 +1,4 @@
-# Spooky-Psychic-App
+# Spooky Psychic App
 Prepare to get spooked! This app allows you to choose from three horror themes and then to guess if the image you choose matches against the computer's choice.
 
 Pull-down menu to choose from themes:
